@@ -1,0 +1,93 @@
+//Classe heroi
+class Heroi {
+  // Construtor para inicializar o herói com nome, idade e tipo
+  constructor(nome, idade, tipo) {
+    this.nome = nome;
+    this.idade = idade;
+    this.tipo = tipo;
+  }
+
+  //ataque
+  atacar() {
+    let ataque;
+    
+    //Definindo o ataque de acordo com o tipo
+    if (this.tipo === "mago") {
+      ataque = "magia";
+    } else if (this.tipo === "guerreiro") {
+      ataque = "espada";
+    } else if (this.tipo === "monge") {
+      ataque = "artes marciais";
+    } else if (this.tipo === "ninja") {
+      ataque = "shuriken";
+    } else {
+      ataque = "ataque desconhecido"; // Caso o tipo não seja reconhecido
+    }
+
+    // Exibindo a mensagem com o tipo de ataque
+    console.log(`O ${this.tipo} atacou usando ${ataque}`);
+  }
+}
+
+//Criando heroi
+let heroi1 = new Heroi("Gandalf", 300, "mago");
+let heroi2 = new Heroi("Arthur", 28, "guerreiro");
+let heroi3 = new Heroi("Bruce", 35, "monge");
+let heroi4 = new Heroi("Shinobi", 25, "ninja");
+
+//ataque de cada heroi
+heroi1.atacar(); // O mago atacou usando magia
+heroi2.atacar(); // O guerreiro atacou usando espada
+heroi3.atacar(); // O monge atacou usando artes marciais
+heroi4.atacar(); // O ninja atacou usando shuriken
+
+
+/*
+//criando herois com uma estrutura de repetição
+
+//dados de cada um:
+const dadosHeróis = [
+  { nome: "Gandalf", idade: 300, tipo: "mago" },
+  { nome: "Arthur", idade: 28, tipo: "guerreiro" },
+  { nome: "Bruce", idade: 35, tipo: "monge" },
+  { nome: "Shinobi", idade: 25, tipo: "ninja" },
+  { nome: "Elena", idade: 40, tipo: "guerreiro" }
+];
+
+//repetição
+for (let i = 0; i < dadosHeróis.length; i++) {
+  // Criando um herói a partir dos dados do array
+  let heroi = new Heroi(dadosHeróis[i].nome, dadosHeróis[i].idade, dadosHeróis[i].tipo);
+  
+  // Chamando o método atacar para cada herói
+  heroi.atacar();
+}
+
+*/
+
+//vetor para armzenar herois
+let herois = [];
+
+while (true) {
+  //recebe os dados
+  const nome = prompt("Digite o nome do herói:");
+  const idade = parseInt(prompt("Digite a idade do herói:"));
+  const tipo = prompt("Digite o tipo do herói (mago, guerreiro, monge, ninja):").toLowerCase();
+
+  //cria e adciona um heroi ao vetor
+  const heroi = new Heroi(nome, idade, tipo);
+  herois.push(heroi);
+
+  // Pergunta se o usuário quer adicionar mais heróis
+  continuar = confirm("Deseja adicionar outro herói?");
+  if (!continuar) {
+    break; // Se o usuário clicar em "Cancelar", sai do loop
+  }
+}
+
+//mostra os heróis assim que o usuario sai da estrutura de repetição
+for (let i = 0; i < herois.length; i++) {
+  const heroi = herois[i];
+  console.log(`O herói ${heroi.nome}, do tipo ${heroi.tipo}, vai atacar agora!`);
+  heroi.atacar();
+}
